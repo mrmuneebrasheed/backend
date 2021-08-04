@@ -33,7 +33,16 @@ app.get("/", (req, res) => {
   res.send("Authors API");
 });
 
-app.get("/authors/:id", (req, res) => {
+app.get("/authors/:id/", (req, res) => {
   const id = req.params.id;
-  res.send(`${(authors[id + 1].name, authors[id + 1].nationality)}`);
+  res.send(`${authors[id - 1].name}, ${authors[id - 1].nationality}`);
+});
+
+app.get("/authors/:id/books/", (req, res) => {
+  const id = req.params.id;
+  let books = "";
+  for (let i = 0; i < authors[id - 1].books.length; i++) {
+    books.concat(authors[id - 1].books[i]);
+  }
+  res.send(`${books}`);
 });
