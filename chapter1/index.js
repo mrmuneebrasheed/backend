@@ -5,6 +5,7 @@ const port = 8000;
 app.listen(port, () => {
   console.log("Server is listening on " + port);
 });
+
 var authors = [
   {
     name: "Lawrence Nowell",
@@ -30,4 +31,9 @@ var authors = [
 
 app.get("/", (req, res) => {
   res.send("Authors API");
+});
+
+app.get("/authors/:id", (req, res) => {
+  const id = req.params.id;
+  res.send(`${(authors[id + 1].name, authors[id + 1].nationality)}`);
 });
